@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DELMONTE KENYA</title>
+    <link rel="stylesheet" href="bootstrap431/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+
+<body style="padding-left:2.5%; padding-right:2%; padding-top:.7%">
+    <div>
+        <div>
+            <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link disabled" data-toggle="pill" href="#" role="tab" style="color:white; padding-right: 190px;">SEAMER <span id="client_id"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#statistics" role="tab" aria-controls="pills-flamingo" aria-selected="true">Metrics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#settings" role="tab" aria-controls="pills-cuckoo" aria-selected="false" onclick="openmodal()">Settings</a>
+                </li>
+            </ul>
+            <div class="tab-content mt-3">
+                <div class="tab-pane fade" id="statistics" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="row" style="padding-left:2.5%; padding-right:2%;">
+                        <div class="col">
+                            <div class="row">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="images/export.svg" class="card-img-top svg_green" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="s_cans">00</h5>
+                                        <p class="card-text">SEAMED CANS</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="images/archive.svg" class="card-img-top svg_yellow" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="s_cases">00</h5>
+                                        <p class="card-text">SEAMED CASES</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="images/glass-fragile.svg" class="card-img-top svg_gray" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="damages">00</h5>
+                                        <p class="card-text">DAMAGED CASES</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="" style="width: 15rem; color: white; text-align: right;">
+                                    <div class="card-body">
+                                        <p>RUN TIME:</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="images/account-multiple-check-outline.svg" class="card-img-top svg_purple" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="team">0</h5>
+                                        <p class="card-text">CURRENT TEAM</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="images/clock-time-eight.svg" class="card-img-top svg_blue" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="shift">0</h5>
+                                        <p class="card-text">CURRENT SHIFT</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card" style="width: 15rem;">
+                                    <img src="images/sort-clock-ascending.svg" class="card-img-top svg_red" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="downtime">00</h5>
+                                        <p class="card-text">DOWNTIME MINS</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="" style="width: 15rem; color: white; text-align: left;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">200</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="canvas-con">
+                                <div class="canvas-con-inner">
+                                    <canvas id="mychart" height="250px"></canvas>
+                                </div>
+                                <div id="my-legend-con" class="legend-con"></div>
+                            </div>
+                            <br>
+                            <div style="text-align: center; color: white;">
+                                <h1 id="efficiency">
+                                    30%
+                                </h1>
+                                <h6>
+                                    EFFICIENCY
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab">
+
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Seamer Identification Name</label>
+                            <select class="form-control" name="client_id">
+                            <option value="s1">seamer 1</option>
+                            <option value="s2">seamer 2</option>
+                            <option value="s3">seamer 3</option>
+                            <option value="s4">seamer 4</option>
+                            <option value="s5">seamer 5</option>
+                            <option value="s6">seamer 6</option>
+                            <option value="s7">seamer 7</option>
+                            <option value="s8">seamer 8</option>
+                            <option value="s9">seamer 9</option>
+                            <option value="s10">seamer 10</option>
+                            <option value="s11">seamer 11</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Select Team Working on Current Shift</label>
+                            <select class="form-control" name="team">
+                            <option>Group A</option>
+                            <option>Group B</option>
+                            <option>Group C</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tim">Number of cans in one case</label>
+                            <select class="form-control" name="canspercase" id="tim">
+                            <option value="6">A10</option>
+                            <option value="24">SA2</option>
+                            <option value="24">A2.5</option>
+                            <option value="24">2TALL</option>
+                            <option value="48">NIF / FLAT</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="formControlRange">Machine Target / Cycletime (cans/min) : <span id="rangee"></span></label>
+                            <input type="range" class="form-control-range" id="formControlRange" onchange="document.getElementById('rangee')">
+                        </div>
+                        <button type="submit" class="btn btn-primary">SAVE SETTINGS AND <b>RUN SHIFT</b></button>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-lg" id="passwordmodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="container">
+                    <h3>Attention!</h3>
+
+                    <p>Proceed with caution. The settings in this section affects the accuracy of information being collected from this seamer.</p>
+                    <ol>
+                        <li>Carefully select the right seamer number</li>
+                        <li>Then choose the current team working on this shift</li>
+                        <li>Then choose the cantype currently being seamed</li>
+                        <li>Finally set the machine Target by moving the slider</li>
+                        <li>Click on save settings. THIS WILL RESET THE DEVICE SO THAT IT CAN START COLLECTING DATA FOR THE SHIFT</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="bootstrap431/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/chart.min.js"></script>
+
+<script src="js/main.js"></script>
+
+</html>
