@@ -71,7 +71,7 @@ def countcans():
     elif GPIO.input(counter2) == 0 and previous2 == True:
         previous2 = False
         # set values to js
-        eel.set_metrics(cnt2, cnt2/canspercase, damages, downtime, eff)
+        eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, downtime, eff)
     
 def getshift():
     if int(now.hour) > 5 and  int(now.hour)  < 14:
@@ -99,7 +99,7 @@ client = connect_mqtt()
 
 def publish():
     global cnt1, cnt2, cont2, downtime
-    msg = '{"clientID":"'+ str(client_id) +'","cans":" ' + str(cnt2) + '","cases":"' + str(cnt2/canspercase) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"1385816","downtime":"'+str(downtime)+'"}'
+    msg = '{"clientID":"'+ str(client_id) +'","cans":" ' + str(cnt2) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"1385816","downtime":"'+str(downtime)+'"}'
     topic = 'cookroom'
     result = client.publish(topic, msg)
     status = result[0]
