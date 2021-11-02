@@ -48,7 +48,7 @@ function openmodal() {
 
 // }, 500);
 
-$('#myDiv').click(function() {
+$('#submit').click(function() {
     //Serialize the data
     const confs = $("form").serialize();
     // send the data to python
