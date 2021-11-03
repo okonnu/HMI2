@@ -44,11 +44,11 @@ function openmodal() {
 }
 
 
-setInterval(function() {
-    var data1 = (Math.floor((Math.random() * 100) + 1));
-    addData(data1)
+// setInterval(function() {
+//     var data1 = (Math.floor((Math.random() * 100) + 1));
+//     addData(data1)
 
-}, 500);
+// }, 500);
 
 
 
