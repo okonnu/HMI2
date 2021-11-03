@@ -26,6 +26,7 @@ var myChart = new Chart(document.getElementById('mychart'), {
 
 function addData(data) {
     alt = 100 - data
+    if (alt < 1) { alt = 0 }
     vals = [data, alt]
     myChart.data.datasets = [{
         label: 'Visitor',
