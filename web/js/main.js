@@ -48,13 +48,22 @@ function openmodal() {
 
 // }, 500);
 
+
+
+// $(window).load(function() {
+//     // $('#actv').click()
+//    
+// });
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('actv').click()
+});
+
 $('#submit').click(function() {
     //Serialize the data
     const confs = $("form").serialize();
     // send the data to python
     eel.set_pyconfigs(confs.client_id, confs.team, confs.canspercase, confs.target)
 });
-
 
 // retrieve settings from python, and save on js
 eel.expose(set_jsconfigs);

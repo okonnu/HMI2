@@ -34,17 +34,22 @@
 }
 
 .card h5,
+.card h3,
 .card p {
     color: white;
 }
 
 body {
-    background: #333;
+    background: black;
     overflow: hidden;
 }
 
 .card {
-    background: #333;
+    background: black;
+}
+
+.card-text {
+    font-size: 14px;
 }
 
 .svg_red {
