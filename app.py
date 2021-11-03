@@ -58,13 +58,13 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
 def countcans():
     global cnt1, cnt2, previous1, previous2, counter1, counter2
     threading.Timer(0.05, countcans).start()
-        # time.sleep(0.03)
-        # if GPIO.input(counter1) == 1 and previous1 == False:
-        #     cnt1 = cnt1 + 1
-        #     print("counter1 : " + str(cnt1))
-        #     previous1 = Truesendcans
-        # elif GPIO.input(counter1) == 0 and previous1 == True:
-        #     previous1 = False
+        time.sleep(0.03)
+        if GPIO.input(counter1) == 1 and previous1 == False:
+            cnt1 = cnt1 + 1
+            print("counter1 : " + str(cnt1))
+            previous1 = Truesendcans
+        elif GPIO.input(counter1) == 0 and previous1 == True:
+            previous1 = False
 
 
     if GPIO.input(counter2) == 1 and previous2 == False:
@@ -74,7 +74,8 @@ def countcans():
     elif GPIO.input(counter2) == 0 and previous2 == True:
         previous2 = False
         # set values to js
-        eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, downtime)
+    damages = cnt2-cnt1    
+    eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, downtime)
     
 def getshift():
     if int(now.hour) in (6,7,8,9,10,11,12,13):
