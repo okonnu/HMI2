@@ -63,7 +63,8 @@ $('#submit').click(function() {
     const confs = $("form").serializeArray();
     // send the data to python
     eel.set_pyconfigs(confs[0].value, confs[1].value, confs[2].value, confs[3].value)
-        // console.log(confs[0].value)
+    console.log(confs)
+    alert('settings saved successfully')
 });
 
 // retrieve settings from python, and save on js

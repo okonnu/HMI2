@@ -44,10 +44,10 @@ GPIO.setup(counter1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(counter2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 @eel.expose
-def set_pyconfigs(configs):
-    client_id = configs[0]
-    team = configs[1]
-    canspercase = configs[2]
+def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
+    client_id = jclient_id
+    team = jteam
+    canspercase = jcanspercase
     target = configs[3]
     shift = getshift()
     eel.set_jsconfigs(client_id, team, canspercase, target, shift)
