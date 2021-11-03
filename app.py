@@ -126,4 +126,4 @@ def sendcans():
 
 sendcans()
 countcans()
-#eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
+eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
