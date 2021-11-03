@@ -5,6 +5,7 @@ from paho.mqtt import client as mqtt_client
 import threading
 import datetime
 import RPi.GPIO as GPIO
+import sys
 
 eel.init('web')
 
@@ -125,3 +126,4 @@ def sendcans():
 sendcans()
 countcans()
 eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
+sys.exit(app.exec_())
