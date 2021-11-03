@@ -71,7 +71,7 @@ $('#submit').click(function() {
     const ftarget = document.getElementById("ftarget").value;
 
     eel.set_pyconfigs(fclient_id, fteam, fcanspercase, ftarget)
-    alert('settings saved successfully')
+        // alert('settings saved successfully')
     document.getElementById('actv').click()
 });
 
@@ -92,7 +92,7 @@ eel.expose(set_metrics);
 
 function set_metrics(s_cans, s_cases, damages, downtime, effic) {
     // efficiency
-    addData([effic, 100 - effic])
+    addData([effic, effic - 100])
 
     //seamed cans
     document.getElementById("s_cans").innerHTML = s_cans

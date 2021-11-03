@@ -18,7 +18,7 @@ password = 'delmo'
 
 canspercase = 24
 team = 'group1'
-target = '150'
+target = 150
 shift = 'shift1'
 
 GPIO.setmode(GPIO.BOARD)
@@ -49,7 +49,7 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
     client_id = jclient_id
     team = jteam
     canspercase = jcanspercase
-    target = jtarget
+    target = int(jtarget)
     shift = getshift()
     print("running js from pythonn")
     eel.set_jsconfigs(client_id, team, canspercase, target, shift)
@@ -115,15 +115,15 @@ def sendcans():
     threading.Timer(1.0, sendcans).start()
     cspeed = cnt2 - pr2
     pr2 = cnt2
+    eque.append(cspeed)
     if len(eque) < 5 :
         eque.append(cspeed)
     else :
-        eque.pop()
-    eff = round(sum(eque)*12 / canspercase, 1)
-    
+        eque.pop(0)
+    eff = round((sum(eque)*12 / target)*100, 1)
+    print(eff)
     publish()
 
 sendcans()
 countcans()
-eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
-sys.exit(app.exec_())
+#eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
