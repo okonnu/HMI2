@@ -103,9 +103,7 @@ def publish():
     topic = 'cookroom'
     result = client.publish(topic, msg)
     status = result[0]
-    if status == 0:
-        print (msg)
-    else:
+    if status != 0:
         print("Failed to send message to topic")
         
     
@@ -114,7 +112,6 @@ def sendcans():
     threading.Timer(1.0, sendcans).start()
     cspeed = cnt2 - pr2
     pr2 = cnt2
-    print (cnt2)
     if len(eque) < 5 :
         eque.append(cspeed)
     else :
