@@ -53,7 +53,7 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
     shift = getshift()
     print("running js from pythonn")
     eel.set_jsconfigs(client_id, team, canspercase, target, shift)
-    print("completed")
+    print(getshift())
  
 def countcans():
     global cnt1, cnt2, previous1, previous2, counter1, counter2
