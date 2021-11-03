@@ -77,11 +77,11 @@ def countcans():
         eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, downtime, eff)
     
 def getshift():
-    if int(now.hour) > 5 and  int(now.hour)  < 14:
+    if int(now.hour) in (6,7,8,9,10,11,12,13):
         return 'shift1'
-    if  int(now.hour)  > 13 and  int(now.hour)  < 22:
+    if  int(now.hour)  in (14,15,16,17,18,19,20,21):
         return 'shift2'
-    if  int(now.hour)  > 21 and  int(now.hour)  < 6 : 
+    if  int(now.hour)  in (22,23,0,1,2,3,4,5) :
         return 'shift3'
     
 
