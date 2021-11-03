@@ -60,9 +60,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 $('#submit').click(function() {
     //Serialize the data
-    const confs = $("form").serialize();
+    const confs = $("form").serializeArray();
     // send the data to python
-    eel.set_pyconfigs(confs.client_id, confs.team, confs.canspercase, confs.target)
+    eel.set_pyconfigs(confs[0].value, confs[1].value, confs[2].value, confs[3].value)
+        // console.log(confs[0].value)
 });
 
 // retrieve settings from python, and save on js
