@@ -90,12 +90,17 @@ function set_jsconfigs(client_id, team, canspercase, target, shift) {
 
 }
 
-eel.expose(set_metrics);
+eel.expose(set_eff);
 
-function set_metrics(s_cans, s_cases, damages, downtime, effic) {
+function set_eff(effic) {
     // efficiency
     console.log(effic)
     addData(effic)
+}
+
+eel.expose(set_metrics);
+
+function set_metrics(s_cans, s_cases, damages, downtime) {
 
     //seamed cans
     document.getElementById("s_cans").innerHTML = s_cans

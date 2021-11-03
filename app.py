@@ -74,7 +74,7 @@ def countcans():
     elif GPIO.input(counter2) == 0 and previous2 == True:
         previous2 = False
         # set values to js
-        eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, downtime, eff)
+        eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, downtime)
     
 def getshift():
     if int(now.hour) in (6,7,8,9,10,11,12,13):
@@ -121,6 +121,7 @@ def sendcans():
     else :
         eque.pop(0)
     eff = round((sum(eque)*12 / target)*100, 1)
+    eel.set_eff(eff)
     print(eff)
     publish()
 
