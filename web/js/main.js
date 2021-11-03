@@ -25,15 +25,17 @@ var myChart = new Chart(document.getElementById('mychart'), {
 });
 
 function addData(data) {
+    alt = 100 - data
+    vals = [data, alt]
     myChart.data.datasets = [{
         label: 'Visitor',
-        data: data,
+        data: vals,
         backgroundColor: [
             "#a2d6c4",
             "transparent"
         ]
     }]
-    document.getElementById('efficiency').innerHTML = data[0] + '%'
+    document.getElementById('efficiency').innerHTML = data + '%'
     myChart.update(0);
 }
 
@@ -42,11 +44,11 @@ function openmodal() {
 }
 
 
-// setInterval(function() {
-//     var data1 = (Math.floor((Math.random() * 100) + 1));
-//     addData([data1, data1 - 100])
+setInterval(function() {
+    var data1 = (Math.floor((Math.random() * 100) + 1));
+    addData(data1)
 
-// }, 500);
+}, 500);
 
 
 
@@ -92,7 +94,7 @@ eel.expose(set_metrics);
 
 function set_metrics(s_cans, s_cases, damages, downtime, effic) {
     // efficiency
-    addData([effic, effic - 100])
+    addData(effic)
 
     //seamed cans
     document.getElementById("s_cans").innerHTML = s_cans
