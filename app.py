@@ -61,7 +61,7 @@ def countcans():
     if GPIO.input(counter1) == 1 and previous1 == False:
         cnt1 = cnt1 + 1
         print("counter1 : " + str(cnt1))
-        previous1 = Truesendcans
+        previous1 = True
     elif GPIO.input(counter1) == 0 and previous1 == True:
         previous1 = False
 
