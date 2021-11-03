@@ -123,7 +123,7 @@
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Seamer Identification Name</label>
-                            <select class="form-control" name="client_id">
+                            <select class="form-control" name="client_id" id="fclient_id">
                             <option value="s1">seamer 1</option>
                             <option value="s2">seamer 2</option>
                             <option value="s3">seamer 3</option>
@@ -139,15 +139,15 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Select Team Working on Current Shift</label>
-                            <select class="form-control" name="team">
+                            <select class="form-control" name="team" id="fteam">
                             <option>Group A</option>
                             <option>Group B</option>
                             <option>Group C</option>
                           </select>
                         </div>
                         <div class="form-group">
-                            <label for="tim">Number of cans in one case</label>
-                            <select class="form-control" name="canspercase" id="tim">
+                            <label for="tim">Select Can type being processed</label>
+                            <select class="form-control" name="canspercase" id="fcanspercase">
                             <option value="6">A10</option>
                             <option value="24">SA2</option>
                             <option value="24">A2.5</option>
@@ -156,8 +156,8 @@
                           </select>
                         </div>
                         <div class="form-group">
-                            <label for="formControlRange">Machine Target / Cycletime (cans/min) : <span id="rangee"></span></label>
-                            <input type="range" class="form-control-range" id="formControlRange" onchange="document.getElementById('rangee')">
+                            <label for="ftarget">Machine Target / Cycletime: <span id="rangee" style="font-size:26px; color: white;"></span> cans/min</label>
+                            <input type="range" max="350" min="50" class="form-control-range" id="ftarget" oninput="updatetarget()">
                         </div>
                         <a href="#" class="btn btn-primary" id="submit">SAVE SETTINGS AND <b>RUN SHIFT</b></a>
                     </form>

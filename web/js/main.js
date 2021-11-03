@@ -58,13 +58,21 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById('actv').click()
 });
 
+function updatetarget() {
+    const tgt = document.getElementById('ftarget').value
+    document.getElementById('rangee').innerHTML = tgt
+}
+
 $('#submit').click(function() {
-    //Serialize the data
-    const confs = $("form").serializeArray();
-    // send the data to python
-    eel.set_pyconfigs(confs[0].value, confs[1].value, confs[2].value, confs[3].value)
-    console.log(confs)
+
+    const fclient_id = document.getElementById("fclient_id").value;
+    const fteam = document.getElementById("fteam").value;
+    const fcanspercase = document.getElementById("fcanspercase").value;
+    const ftarget = document.getElementById("ftarget").value;
+
+    eel.set_pyconfigs(fclient_id, fteam, fcanspercase, ftarget)
     alert('settings saved successfully')
+    document.getElementById('actv').click()
 });
 
 // retrieve settings from python, and save on js
