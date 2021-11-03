@@ -94,6 +94,7 @@ eel.expose(set_metrics);
 
 function set_metrics(s_cans, s_cases, damages, downtime, effic) {
     // efficiency
+    console.log(effic)
     addData(effic)
 
     //seamed cans
