@@ -48,9 +48,11 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
     client_id = jclient_id
     team = jteam
     canspercase = jcanspercase
-    target = configs[3]
+    target = jtarget
     shift = getshift()
+    print("running js from pythonn")
     eel.set_jsconfigs(client_id, team, canspercase, target, shift)
+    print("completed")
  
 def countcans():
     global cnt1, cnt2, previous1, previous2, counter1, counter2
