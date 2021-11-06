@@ -9,13 +9,6 @@ import sys
 
 eel.init('web')
 
-broker = '192.168.1.247'
-port = 1883
-topic = "cookroom"
-client_id = 'c6'
-username = 'dmkl'
-password = 'delmo'
-
 canspercase = 24
 team = 'group1'
 target = 150
@@ -107,7 +100,7 @@ def publish():
     result = client.publish(topic, msg)
     status = result[0]
     if status != 0:
-        print("Failed to send message to topic")
+        print(str(status) + "Failed to send message to topic")
         
     
 def sendcans():
