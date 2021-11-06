@@ -14,6 +14,13 @@ team = 'group1'
 target = 150
 shift = 'shift1'
 
+broker = '192.168.1.247'
+port = 1883
+topic = "cookroom"
+client_id = 'c6'
+username = 'dmkl'
+password = 'delmo'
+
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
@@ -86,11 +93,11 @@ def connect_mqtt():
         else:
             print("Failed to connect, return code %d\n", rc)
     # Set Connecting Client ID
-    client = mqtt_client.Client(client_id)
-    client.username_pw_set(username, password)
-    client.on_connect = on_connect
-    client.connect(broker, port)
-    return client
+client = mqtt_client.Client(client_id)
+client.username_pw_set(username, password)
+client.on_connect = on_connect
+client.connect(broker, port)
+return client
 client = connect_mqtt()
 
 def publish():
