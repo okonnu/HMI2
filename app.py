@@ -56,16 +56,16 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
     eel.set_jsconfigs(client_id, team, canspercase, target, shift)
     print(getshift())
  
- def countcans1():
-    global cnt1, cnt2, previous1, previous2, counter1, counter2
-    threading.Timer(0.05, countcans).start()
-    if GPIO.input(counter1) == 1 and previous1 == False:
-        cnt1 = cnt1 + 1
-        print("counter1 : " + str(cnt1))
-        previous1 = True
-    elif GPIO.input(counter1) == 0 and previous1 == True:
-        previous1 = False
-
+def countcans1():
+   global cnt1, cnt2, previous1, previous2, counter1, counter2
+   threading.Timer(0.05, countcans).start()
+   if GPIO.input(counter1) == 1 and previous1 == False:
+       cnt1 = cnt1 + 1
+       print("counter1 : " + str(cnt1))
+       previous1 = True
+   elif GPIO.input(counter1) == 0 and previous1 == True:
+       previous1 = False
+       
 def countcans2():
     global cnt1, cnt2, previous1, previous2, counter1, counter2
     threading.Timer(0.05, countcans).start()
@@ -132,5 +132,6 @@ def sendcans():
     publish()
 
 sendcans()
-countcans()
+countcans1()
+countcans2()
 eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
