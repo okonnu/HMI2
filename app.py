@@ -57,7 +57,7 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
     print(getshift())
  
 def countcans1():
-   global cnt1, cnt2, previous1, counter1
+   global cnt1, previous1, counter1
    threading.Timer(0.05, countcans1).start()
    if GPIO.input(counter1) == 1 and previous1 == False:
        cnt1 = cnt1 + 1
@@ -67,7 +67,7 @@ def countcans1():
        previous1 = False
        
 def countcans2():
-    global cnt1, cnt2, previous2, counter2, delay, downtime
+    global cnt1,cnt1, previous2, counter2, delay, downtime
     threading.Timer(0.05, countcans2).start()
     delay = delay + 0.05
     if GPIO.input(counter2) == 1 and previous2 == False:
@@ -79,8 +79,8 @@ def countcans2():
     elif GPIO.input(counter2) == 0 and previous2 == True:
         previous2 = False
         # set values to js
-    damages = cnt2-cnt1    
-    eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, round(downtime/60))
+    damages = cnt1-cnt2    
+    eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, round(downtime/60, 2))
     
 def getshift():
     if int(now.hour) in (6,7,8,9,10,11,12,13):
@@ -128,7 +128,6 @@ def sendcans():
         eque.pop(0)
     eff = round((sum(eque)*12 / target)*100, 1)
     eel.set_eff(eff)
-    print(eff)
     publish()
 
 sendcans()
