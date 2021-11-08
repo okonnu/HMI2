@@ -104,7 +104,7 @@ def connect_mqtt():
     client.on_connect = on_connect
     client.connect(broker, port)
     return client
-client = connect_mqtt()
+# client = connect_mqtt()
 
 def publish():
     global cnt1, cnt2, cont2, downtime
