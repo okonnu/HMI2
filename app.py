@@ -131,6 +131,6 @@ def sendcans():
     publish()
 
 sendcans()
-# countcans1()
+countcans1()
 countcans2()
 eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
