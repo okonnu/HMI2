@@ -128,7 +128,7 @@ def sendcans():
         eque.pop(0)
     eff = round((sum(eque)*12 / target)*100, 1)
     eel.set_eff(eff)
-    publish()
+    # publish()
 
 sendcans()
 countcans1()
