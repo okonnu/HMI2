@@ -67,7 +67,7 @@ def countcans1():
        previous1 = False
        
 def countcans2():
-    global cnt1,cnt2, previous2, counter2, delay, downtime
+    global cnt1,cnt, previous2, counter2, delay, downtime
     threading.Timer(0.05, countcans2).start()
     delay = delay + 0.05
     if GPIO.input(counter2) == 1 and previous2 == False:
@@ -104,16 +104,16 @@ def connect_mqtt():
     client.on_connect = on_connect
     client.connect(broker, port)
     return client
-# client = connect_mqtt()
+client = connect_mqtt()
 
-# def publish():
-#     global cnt1, cnt2, cont2, downtime
-#     msg = '{"clientID":"'+ str(client_id) +'","cans":" ' + str(cnt2) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"1385816","downtime":"'+str(downtime)+'"}'
-#     topic = 'cookroom'
-#     result = client.publish(topic, msg)
-#     status = result[0]
-#     if status != 0:
-#         print(str(status) + "Failed to send message to topic")
+def publish():
+    global cnt1, cnt2, cont2, downtime
+    msg = '{"clientID":"'+ str(client_id) +'","cans":" ' + str(cnt2) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"1385816","downtime":"'+str(downtime)+'"}'
+    topic = 'cookroom'
+    result = client.publish(topic, msg)
+    status = result[0]
+    if status != 0:
+        print(str(status) + "Failed to send message to topic")
         
     
 def sendcans():
@@ -128,9 +128,9 @@ def sendcans():
         eque.pop(0)
     eff = round((sum(eque)*12 / target)*100, 1)
     eel.set_eff(eff)
-    # publish()
+    publish()
 
 sendcans()
-countcans1()
+# countcans1()
 countcans2()
 eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
