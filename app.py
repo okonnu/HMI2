@@ -67,7 +67,7 @@ def countcans1():
        previous1 = False
        
 def countcans2():
-    global cnt1, cnt2, previous1, previous2, counter1, counter2, delay
+    global cnt1, cnt2, previous1, previous2, counter1, counter2, delay, downtime
     threading.Timer(0.05, countcans2).start()
     delay = delay + 0.05
     if GPIO.input(counter2) == 1 and previous2 == False:
