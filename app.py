@@ -106,14 +106,14 @@ def connect_mqtt():
     return client
 # client = connect_mqtt()
 
-def publish():
-    global cnt1, cnt2, cont2, downtime
-    msg = '{"clientID":"'+ str(client_id) +'","cans":" ' + str(cnt2) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"1385816","downtime":"'+str(downtime)+'"}'
-    topic = 'cookroom'
-    result = client.publish(topic, msg)
-    status = result[0]
-    if status != 0:
-        print(str(status) + "Failed to send message to topic")
+# def publish():
+#     global cnt1, cnt2, cont2, downtime
+#     msg = '{"clientID":"'+ str(client_id) +'","cans":" ' + str(cnt2) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"1385816","downtime":"'+str(downtime)+'"}'
+#     topic = 'cookroom'
+#     result = client.publish(topic, msg)
+#     status = result[0]
+#     if status != 0:
+#         print(str(status) + "Failed to send message to topic")
         
     
 def sendcans():
