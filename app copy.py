@@ -38,7 +38,6 @@ cspeed = 0
 eque = []
 eff = 0
 damages = 0
-delay = 0 
 
 now = datetime.datetime.now()
 
@@ -56,30 +55,25 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
     eel.set_jsconfigs(client_id, team, canspercase, target, shift)
     print(getshift())
  
- def countcans1():
+def countcans():
     global cnt1, cnt2, previous1, previous2, counter1, counter2
     threading.Timer(0.05, countcans).start()
-    if GPIO.input(counter1) == 1 and previous1 == False:
-        cnt1 = cnt1 + 1
-        print("counter1 : " + str(cnt1))
-        previous1 = True
-    elif GPIO.input(counter1) == 0 and previous1 == True:
-        previous1 = False
+    # if GPIO.input(counter1) == 1 and previous1 == False:
+    #     cnt1 = cnt1 + 1
+    #     print("counter1 : " + str(cnt1))
+    #     previous1 = True
+    # elif GPIO.input(counter1) == 0 and previous1 == True:
+    #     previous1 = False
 
-def countcans2():
-    global cnt1, cnt2, previous1, previous2, counter1, counter2
-    threading.Timer(0.05, countcans).start()
-    delay = delay + 0.05
+
     if GPIO.input(counter2) == 1 and previous2 == False:
         cnt2 = cnt2 + 1
         print("counter2 : " + str(cnt2))
-        downtime = downtime + delay
-        delay = 0
         previous2 = True
     elif GPIO.input(counter2) == 0 and previous2 == True:
         previous2 = False
         # set values to js
-    damages = cnt2-cnt1    
+    # damages = cnt2-cnt1    
     eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, downtime)
     
 def getshift():

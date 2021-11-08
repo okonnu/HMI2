@@ -1,4 +1,4 @@
-// document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener('contextmenu', event => event.preventDefault());
 
 var visitData = ["", ""];
 
@@ -7,7 +7,7 @@ var myChart = new Chart(document.getElementById('mychart'), {
     data: {
         labels: ["Efficiency", ""],
         datasets: [{
-            label: 'Visitor',
+            label: 'Efficiency',
             data: ["20", "80"],
             backgroundColor: [
                 "#a2d6c4",
@@ -24,20 +24,47 @@ var myChart = new Chart(document.getElementById('mychart'), {
     }
 });
 
+// function addData(data) {
+//     alt = 100 - data
+//     if (alt < 1) { alt = 0 }
+//     vals = [data, alt]
+//     myChart.data.datasets = [{
+//         label: 'Visitor',
+//         data: vals,
+//         backgroundColor: [
+//             "#a2d6c4",
+//             "transparent"
+//         ]
+//     }]
+//     document.getElementById('efficiency').innerHTML = data + '%'
+//     myChart.update(0);
+// }
 function addData(data) {
+    data = Math.round(data)
+    colo = perc2color(data)
     alt = 100 - data
     if (alt < 1) { alt = 0 }
-    vals = [data, alt]
-    myChart.data.datasets = [{
-        label: 'Visitor',
-        data: vals,
-        backgroundColor: [
-            "#a2d6c4",
-            "transparent"
-        ]
-    }]
+    myChart.data.datasets.forEach((dataset) => {
+        dataset.data[0] = data;
+        dataset.data[1] = alt;
+        dataset.backgroundColor[0] = colo
+    });
     document.getElementById('efficiency').innerHTML = data + '%'
     myChart.update(0);
+}
+
+function perc2color(perc) {
+    perc = perc / 1.5
+    var r, g, b = 0;
+    if (perc < 50) {
+        r = 255;
+        g = Math.round(5.1 * perc);
+    } else {
+        g = 255;
+        r = Math.round(510 - 5.10 * perc);
+    }
+    var h = r * 0x10000 + g * 0x100 + b * 0x1;
+    return '#' + ('000000' + h.toString(16)).slice(-6);
 }
 
 function openmodal() {
