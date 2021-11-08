@@ -24,11 +24,11 @@ password = 'delmo'
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-counter1 = 33
+counter1 = 37
 previous1 = False
 cnt1 = 0
 
-counter2 = 37
+counter2 = 33
 previous2 = False
 cnt2 = 0
 cont2 = 0
@@ -58,7 +58,7 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
  
 def countcans1():
    global cnt1, previous1, counter1
-   threading.Timer(0.05, countcans1).start()
+   threading.Timer(0.10, countcans1).start()
    if GPIO.input(counter1) == 1 and previous1 == False:
        cnt1 = cnt1 + 1
        print("counter1 : " + str(cnt1))
@@ -68,8 +68,8 @@ def countcans1():
        
 def countcans2():
     global cnt1,cnt2, previous2, counter2, delay, downtime
-    threading.Timer(0.05, countcans2).start()
-    delay = delay + 0.05
+    threading.Timer(0.10, countcans2).start()
+    delay = delay + 0.10
     if GPIO.input(counter2) == 1 and previous2 == False:
         cnt2 = cnt2 + 1
         print("counter2 : " + str(cnt2))
