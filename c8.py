@@ -17,7 +17,7 @@ shift = 'shift1'
 broker = '192.168.1.247'
 port = 1883
 topic = "test"
-client_id = 'C6'
+client_id = 'C8'
 username = 'dmkl'
 password = 'delmo'
 
