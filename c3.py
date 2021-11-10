@@ -55,7 +55,6 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
     print("running js from pythonn")
     eel.set_jsconfigs(client_id, team, canspercase, target, shift)
     print(getshift())
-set_pyconfigs('C3', "GROUP A", "24", "200")
  
 def countcans1():
    global cnt1, previous1, counter1
@@ -131,6 +130,8 @@ def sendcans():
     eel.set_eff(eff)
     publish()
 
+
+set_pyconfigs('C3', "GROUP A", "24", "200")
 sendcans()
 countcans1()
 countcans2()
