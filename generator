@@ -1,0 +1,11 @@
+python3 -m eel c1.py web --onefile --noconsole &&
+python3 -m eel c2.py web --onefile --noconsole &&
+python3 -m eel c3.py web --onefile --noconsole &&
+python3 -m eel c4.py web --onefile --noconsole &&
+python3 -m eel c5.py web --onefile --noconsole &&
+python3 -m eel c6.py web --onefile --noconsole &&
+python3 -m eel c7.py web --onefile --noconsole &&
+python3 -m eel c8.py web --onefile --noconsole &&
+python3 -m eel c9.py web --onefile --noconsole &&
+python3 -m eel c10.py web --onefile --noconsole &&
+python3 -m eel c11.py web --onefile --noconsole 
