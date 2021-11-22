@@ -130,7 +130,10 @@ def sendcans():
     eel.set_eff(eff)
     publish()
 
+
+set_pyconfigs(client_id, "GROUP A", "24", "200")
 sendcans()
 countcans1()
 countcans2()
-eel.start('index.html', host='localhost', port=27000, size=(800, 480), position=(0,0), )
+
+eel.start('index.html', host='localhost', port=27011, size=(1280,960), position=(0,0), cmdline_args=['--incognito','--disable-infobars','--start-fullscreen'] )
