@@ -24,11 +24,11 @@ password = 'delmo'
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-counter1 = 37
+counter1 = 33
 previous1 = False
 cnt1 = 0
 
-counter2 = 33
+counter2 = 37
 previous2 = False
 cnt2 = 0
 cont2 = 0
@@ -42,8 +42,8 @@ delay = 0
 
 now = datetime.datetime.now()
 
-GPIO.setup(counter1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(counter2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(counter1, GPIO.IN)
+GPIO.setup(counter2, GPIO.IN)
 
 @eel.expose
 def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):

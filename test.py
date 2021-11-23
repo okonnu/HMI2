@@ -23,3 +23,7 @@ except:
 # GPIO.setup(counter1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 # counter2 = 33
 # GPIO.setup(counter2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+# seamer 7
+# counter2 = 37
+# GPIO.setup(counter1, GPIO.IN)
