@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import datetime
+import time
 
 
 
@@ -14,5 +14,6 @@ GPIO.setup(counter1, GPIO.IN)
 try:  
     while True : 
         print (GPIO.input(counter1)) 
+        time.sleep(1)
 except:
     GPIO.cleanup() 
