@@ -12,6 +12,6 @@ GPIO.setup(counter1, GPIO.IN)
 
 try:  
     while True : 
-        print GPIO.input(counter1) 
+        print (GPIO.input(counter1)) 
 except:
     GPIO.cleanup() 
