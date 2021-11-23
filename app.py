@@ -17,7 +17,7 @@ shift = 'shift1'
 broker = '192.168.1.247'
 port = 1883
 topic = "test"
-client_id = 'C2'
+client_id = 'C8'
 username = 'dmkl'
 password = 'delmo'
 
@@ -42,8 +42,8 @@ delay = 0
 
 now = datetime.datetime.now()
 
-GPIO.setup(counter1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.setup(counter2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(counter1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(counter2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 @eel.expose
 def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
