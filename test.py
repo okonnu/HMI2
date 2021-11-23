@@ -14,7 +14,7 @@ GPIO.setup(counter1, GPIO.IN)
 try:  
     while True : 
         print (GPIO.input(counter1)) 
-        time.sleep(0.05)
+        time.sleep(0.02)
 except:
     GPIO.cleanup() 
 
