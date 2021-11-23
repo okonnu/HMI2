@@ -5,7 +5,7 @@ import datetime
 
 GPIO.setmode(GPIO.BOARD)
 
-counter1 = 37
+counter1 = 33
 
 # GPIO.setup(counter1, GPIO.IN)
 GPIO.setup(counter1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
