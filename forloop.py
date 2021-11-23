@@ -1,4 +1,17 @@
-import time
-for x in range(28800000):
-  print(x) 
-  time.sleep(.01)
+import RPi.GPIO as GPIO
+import datetime
+
+
+
+GPIO.setmode(GPIO.BOARD)
+
+counter1 = 33
+
+GPIO.setup(counter1, GPIO.IN)
+
+
+try:  
+    while True : 
+        print GPIO.input(counter1) 
+except:
+    GPIO.cleanup() 
