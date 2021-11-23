@@ -79,7 +79,7 @@ def countcans2():
     elif GPIO.input(counter2) == 0 and previous2 == True:
         previous2 = False
         # set values to js
-    damages = cnt1-cnt2    
+    # damages = cnt1-cnt2    
     eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, round(downtime/60, 2))
     
 def getshift():
@@ -133,7 +133,7 @@ def sendcans():
 
 set_pyconfigs(client_id, "GROUP A", "24", "200")
 sendcans()
-countcans1()
+# countcans1()
 countcans2()
 
 eel.start('index.html', host='localhost', port=27011, size=(1280,960), position=(0,0), cmdline_args=['--incognito','--disable-infobars','--start-fullscreen'] )
