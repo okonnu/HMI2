@@ -8,6 +8,7 @@ import RPi.GPIO as GPIO
 import sys
 import os
 from dotenv import load_dotenv
+from resetRpi import restart
 
 eel.init('web')
 load_dotenv()
