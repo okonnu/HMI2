@@ -1,7 +1,5 @@
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-var visitData = ["", ""];
-
 var myChart = new Chart(document.getElementById('mychart'), {
     type: 'doughnut',
     data: {

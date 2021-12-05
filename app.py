@@ -1,15 +1,17 @@
 import eel
 import random
 import time
-from paho.mqtt import client as mqtt_client
+from paho.mqtt import client as mqtt
 import threading
 import datetime
 import RPi.GPIO as GPIO
 import sys
+import os
+from dotenv import load_dotenv
 
 eel.init('web')
 
-canspercase = 24
+canspercase = os.getenv('CANSPERCASE')
 team = 'group1'
 target = 150
 shift = 'shift1'
@@ -92,19 +94,18 @@ def getshift():
     
 
 
-def connect_mqtt():
-    def on_connect(client, userdata, flags, rc):
-        if rc == 0:
-            print("Connected to MQTT Broker!")
-        else:
-            print("Failed to connect, return code %d\n", rc)
-    # Set Connecting Client ID
-    client = mqtt_client.Client(client_id)
-    client.username_pw_set(username, password)
-    client.on_connect = on_connect
-    client.connect(broker, port)
-    return client
-client = connect_mqtt()
+def on_connect(client, userdata, flags, rc):  # The callback for when the client connects to the broker
+    print("Connected with result code {0}".format(str(rc)))  # Print result of connection attempt
+    # client.subscribe("test")  # Subscribe to the topic “digitest/test1”, receive any messages published on it
+
+client = mqtt.Client(client_id)  # Create instance of client with client ID “digi_mqtt_test”
+client.on_connect = on_connect  # Define callback function for successful connection
+username = 'dmkl'
+password = 'delmo'
+client.username_pw_set(username, password)
+client.connect('192.168.1.247', 1883, 60)
+client.loop_start()  #Start loop
+
 
 def publish():
     global cnt1, cnt2, cont2, downtime, damages
