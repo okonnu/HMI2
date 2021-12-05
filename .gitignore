@@ -1,0 +1,6 @@
+_*
+build*
+dist*
+simulator.py
+.*
+.env
