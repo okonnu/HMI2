@@ -107,10 +107,40 @@ def getshift():
     
 
 
+
+        
+    
+def sendcans():
+    global cnt2, downtime, pr2, cspeed, canspercase
+    threading.Timer(1.0, sendcans).start()
+    cspeed = cnt2 - pr2
+    pr2 = cnt2
+    eque.append(cspeed)
+    if len(eque) < 5 :
+        eque.append(cspeed)
+    else :
+        eque.pop(0)
+    eff = round((sum(eque)*12 / target)*100, 1)
+    eel.set_eff(eff)
+    publish()
+
+
+set_pyconfigs(client_id, "GROUP A", "24", "200")
+
+
+
+
 def on_connect(client, userdata, flags, rc):  # The callback for when the client connects to the broker
-    # print("Connected with result code {0}".format(str(rc)))  # Print result of connection attempt
+    print("Connected with result code {0}".format(str(rc)))  # Print result of connection attempt
     client.subscribe(os.getenv('DATA_TOPIC'))  # Subscribe to the topic “digitest/test1”, receive any messages published on it
     client.subscribe(os.getenv('RESET_TOPIC'))
+    
+    sendcans()
+
+    if os.getenv('COUNTER1_STATUS') == "ENABLED":
+        countcans1()
+    if os.getenv('COUNTER2_STATUS') == "ENABLED":
+        countcans2()
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
     # print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
@@ -137,29 +167,5 @@ def publish():
     status = result[0]
     if status != 0:
         print(str(status) + "Failed to send message to topic")
-        
-    
-def sendcans():
-    global cnt2, downtime, pr2, cspeed, canspercase
-    threading.Timer(1.0, sendcans).start()
-    cspeed = cnt2 - pr2
-    pr2 = cnt2
-    eque.append(cspeed)
-    if len(eque) < 5 :
-        eque.append(cspeed)
-    else :
-        eque.pop(0)
-    eff = round((sum(eque)*12 / target)*100, 1)
-    eel.set_eff(eff)
-    publish()
-
-
-set_pyconfigs(client_id, "GROUP A", "24", "200")
-sendcans()
-
-if os.getenv('COUNTER1_STATUS') == "ENABLED":
-    countcans1()
-if os.getenv('COUNTER2_STATUS') == "ENABLED":
-    countcans2()
 
 eel.start('index.html', host='localhost', port=27011, size=(1280,960), position=(0,0), cmdline_args=['--incognito','--disable-infobars','--start-fullscreen'] )
