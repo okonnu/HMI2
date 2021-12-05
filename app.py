@@ -11,26 +11,26 @@ from dotenv import load_dotenv
 
 eel.init('web')
 
-canspercase = os.getenv('CANSPERCASE')
+canspercase = int(os.getenv('CANSPERCASE'))
 team = 'group1'
-target = 150
+target = int(os.getenv('TARGET_PER_MIN'))
 shift = 'shift1'
 
-broker = '192.168.1.247'
-port = 1883
-topic = "test"
-client_id = 'C8'
-username = 'dmkl'
-password = 'delmo'
+broker = os.getenv('MQTT_SERVER')
+port = os.getenv('MQTT_PORT')
+topic = os.getenv('DATA_TOPIC')
+client_id = os.getenv('CLIENT_ID')
+username = os.getenv('MQTT_USER')
+password = os.getenv('MQTT_PASS')
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-counter1 = 33
+counter1 = int(os.getenv('COUNTER1_PIN'))
 previous1 = False
 cnt1 = 0
 
-counter2 = 37
+counter2 = int(os.getenv('COUNTER2_PIN'))
 previous2 = False
 cnt2 = 0
 cont2 = 0
@@ -44,8 +44,19 @@ delay = 0
 
 now = datetime.datetime.now()
 
-GPIO.setup(counter1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(counter2, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+def setpinmode(pin, pinmode):
+    if (pinmode == "UP"):
+        print("setting pin " + str(PIN) + " on pull-up mode")
+        GPIO.setup(testpin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    elif (pinmode == "DOWN"):
+        print("setting pin " + str(PIN) + " on pull-down mode")
+        GPIO.setup(testpin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    else:
+        print("setting PIN " + str(PIN) + " on plain mode")
+        GPIO.setup(testpin, GPIO.IN)
+
+setpinmode(counter1, os.getenv('COUNTER1_MODE') )
+setpinmode(counter2, os.getenv('COUNTER2_MODE') )
 
 @eel.expose
 def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
@@ -134,7 +145,10 @@ def sendcans():
 
 set_pyconfigs(client_id, "GROUP A", "24", "200")
 sendcans()
-# countcans1()
-countcans2()
+
+if os.getenv('COUNTER1_STATUS') == "ENABLED":
+    countcans1()
+if os.getenv('COUNTER2_STATUS') == "ENABLED":
+    countcans2()
 
 eel.start('index.html', host='localhost', port=27011, size=(1280,960), position=(0,0), cmdline_args=['--incognito','--disable-infobars','--start-fullscreen'] )
