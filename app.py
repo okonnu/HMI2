@@ -133,7 +133,7 @@ def publish():
     global client, cnt1, cnt2, cont2, downtime, damages
     msg = '{"clientID":"'+ str(client_id) +'","cans":" ' + str(cnt2) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"'+str(time.time()) +'","damages":"'+str(damages)+'","downtime":"'+str(downtime)+'"}'
     topic = os.getenv('DATA_TOPIC')
-    result = client.publish(topic, msg)
+    result = client.publish(topic, "test")
     status = result[0]
     if status != 0:
         print(str(status) + "Failed to send message to topic")
