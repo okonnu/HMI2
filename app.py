@@ -108,7 +108,7 @@ def getshift():
 
 
 def on_connect(client, userdata, flags, rc):  # The callback for when the client connects to the broker
-    print("Connected with result code {0}".format(str(rc)))  # Print result of connection attempt
+    # print("Connected with result code {0}".format(str(rc)))  # Print result of connection attempt
     client.subscribe(os.getenv('DATA_TOPIC'))  # Subscribe to the topic “digitest/test1”, receive any messages published on it
     client.subscribe(os.getenv('RESET_TOPIC'))
 
