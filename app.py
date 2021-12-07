@@ -43,6 +43,8 @@ eque = []
 eff = 0
 damages = 0
 delay = 0 
+tstamp = 0
+sleep_time = (100- int(os.getenv('CPU_USAGE', 95)))/100
 
 now = datetime.datetime.now()
 
@@ -72,8 +74,8 @@ def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
     print(getshift())
  
 def countcans1():
-    global cnt1, previous1, counter1
-    threading.Timer(0.05, countcans1).start()
+    global cnt1, previous1, counter1, cnt2,damages
+    threading.Timer(sleep_time, countcans1).start()
     if GPIO.input(counter1) == 1 and previous1 == False:
         cnt1 = cnt1 + 1
         print("counter1 : " + str(cnt1))
@@ -84,8 +86,8 @@ def countcans1():
        
 def countcans2():
     global cnt1,cnt2, previous2, counter2, delay, downtime
-    threading.Timer(0.05, countcans2).start()
-    delay = delay + 0.05
+    threading.Timer(sleep_time, countcans2).start()
+    delay = delay + sleep_time
     if GPIO.input(counter2) == 1 and previous2 == False:
         cnt2 = cnt2 + 1
         print("counter2 : " + str(cnt2))
@@ -131,16 +133,16 @@ client.loop_start()  #Start loop
 
 def publish():
     global client, cnt1, cnt2, cont2, downtime, damages
-    msg = '{"clientID":"'+ str(client_id) +'","cans":" ' + str(cnt2) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"'+str(time.time()) +'","damages":"'+str(damages)+'","downtime":"'+str(downtime)+'"}'
+    msg = '{"clientID":"'+ str(client_id) +'","target":"'+ str(target) +'","cans":" ' + str(cnt2) + '","canspercase":"' + str(canspercase) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"'+str(tstamp) +'","damages":"'+str(damages)+'","downtime":"'+str(downtime)+'"}'
     topic = os.getenv('DATA_TOPIC')
-    result = client.publish(topic, "test")
-    status = result[0]
+    result = client.publish(topic, msg)
+    status = result[0] 
     if status != 0:
-        print(str(status) + "Failed to send message to topic")
+        print("publish() returned error code:" + str(status))
         
     
 def sendcans():
-    global cnt2, downtime, pr2, cspeed, canspercase
+    global cnt2, downtime, pr2, cspeed, canspercase, tstamp
     threading.Timer(1.0, sendcans).start()
     cspeed = cnt2 - pr2
     pr2 = cnt2
@@ -152,6 +154,7 @@ def sendcans():
     eff = round((sum(eque)*12 / target)*100, 1)
     eel.set_eff(eff)
     publish()
+    tstamp = tstamp + 1
 
 
 set_pyconfigs(client_id, "GROUP A", "24", "200")
