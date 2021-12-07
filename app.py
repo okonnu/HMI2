@@ -82,7 +82,7 @@ def countcans1():
         previous1 = True
     elif GPIO.input(counter1) == 0 and previous1 == True:
         previous1 = False
-    damages = cnt1-cnt2  
+    # damages = cnt1-cnt2  
        
 def countcans2():
     global cnt1,cnt2, previous2, counter2, delay, downtime
