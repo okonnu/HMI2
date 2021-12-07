@@ -64,13 +64,9 @@ setpinmode(counter2, os.getenv('COUNTER2_MODE') )
 
 @eel.expose
 def set_pyconfigs(jclient_id, jteam, jcanspercase, jtarget):
-    client_id = jclient_id
-    team = jteam
-    canspercase = jcanspercase
-    target = int(jtarget)
-    shift = getshift()
-    print("running js from pythonn")
-    eel.set_jsconfigs(client_id, team, canspercase, target, shift)
+    
+    print("Initializing with system defaults ...")
+    eel.set_jsconfigs(jclient_id, jteam, jcanspercase, jtarget, getshift())
     print(getshift())
  
 def countcans1():
@@ -157,7 +153,7 @@ def sendcans():
     tstamp = tstamp + 1
 
 
-set_pyconfigs(client_id, "GROUP A", "24", "200")
+set_pyconfigs(client_id, team, canspercase, target)
 sendcans()
 
 if os.getenv('COUNTER1_STATUS') == "ENABLED":
