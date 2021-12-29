@@ -9,7 +9,9 @@ import sys
 import os
 from dotenv import load_dotenv
 from resetRpi import restart
+from cleanchrome import cleanchrome
 
+cleanchrome()
 eel.init('web')
 load_dotenv()
 
