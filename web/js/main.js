@@ -126,7 +126,7 @@ function set_eff(effic) {
 
 eel.expose(set_metrics);
 
-function set_metrics(s_cans, s_cases, damages, downtime) {
+function set_metrics(s_cans, s_cases, damages, downtime, r_cans) {
 
     //seamed cans
     document.getElementById("s_cans").innerHTML = s_cans

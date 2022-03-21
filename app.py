@@ -10,6 +10,7 @@ import os
 from dotenv import load_dotenv
 from resetRpi import restart
 from cleanchrome import cleanchrome
+import json
 
 cleanchrome()
 eel.init('web')
@@ -22,10 +23,12 @@ shift = 'shift1'
 
 broker = os.getenv('MQTT_SERVER')
 port = os.getenv('MQTT_PORT')
-topic = os.getenv('DATA_TOPIC')
+dataTopic = os.getenv('DATA_TOPIC')
 client_id = os.getenv('CLIENT_ID')
 username = os.getenv('MQTT_USER')
 password = os.getenv('MQTT_PASS')
+reserTopic = os.getenv('RESET_TOPIC')
+configTopic = os.getenv('CONFIG_TOPIC')
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -80,7 +83,7 @@ def countcans1():
         previous1 = True
     elif GPIO.input(counter1) == 0 and previous1 == True:
         previous1 = False
-    # damages = cnt1-cnt2  
+    damages = cnt1-cnt2  
        
 def countcans2():
     global cnt1,cnt2, previous2, counter2, delay, downtime
@@ -95,7 +98,7 @@ def countcans2():
     elif GPIO.input(counter2) == 0 and previous2 == True:
         previous2 = False
         # set values to js  
-    eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, round(downtime/60, 2))
+    eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, round(downtime/60, 2), cnt1)
     
 def getshift():
     if int(now.hour) in (6,7,8,9,10,11,12,13):
@@ -109,14 +112,19 @@ def getshift():
 
 def on_connect(client, userdata, flags, rc):  # The callback for when the client connects to the broker
     # print("Connected with result code {0}".format(str(rc)))  # Print result of connection attempt
-    client.subscribe(os.getenv('DATA_TOPIC'))  # Subscribe to the topic “digitest/test1”, receive any messages published on it
-    client.subscribe(os.getenv('RESET_TOPIC'))
+    client.subscribe(dataTopic)  # Subscribe to the topic “digitest/test1”, receive any messages published on it
+    client.subscribe(resetTopic)
+    client.subscribe(configTopic)
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
-    # print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
-    if msg.topic == os.getenv('RESET_TOPIC'):
+    global cnt1
+    if msg.topic == resetTopic:
         print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
         restart()
+    if msg.topic == configTopic:
+        print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
+        data = json.loads(msg.payload)
+        cnt1 = data[cansReceived]
 
 client = mqtt.Client(os.getenv('CLIENT_ID'))  # Create instance of client with client ID “digi_mqtt_test”
 client.on_connect = on_connect  # Define callback function for successful connection
@@ -132,7 +140,7 @@ client.loop_start()  #Start loop
 def publish():
     global client, cnt1, cnt2, cont2, downtime, damages
     msg = '{"clientID":"'+ str(client_id) +'","target":"'+ str(target) +'","cans":" ' + str(cnt2) + '","canspercase":"' + str(canspercase) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"'+str(tstamp) +'","damages":"'+str(damages)+'","downtime":"'+str(downtime)+'"}'
-    topic = os.getenv('DATA_TOPIC')
+    topic = dataTopic
     result = client.publish(topic, msg)
     status = result[0] 
     if status != 0:
