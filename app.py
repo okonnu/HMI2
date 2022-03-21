@@ -27,7 +27,7 @@ dataTopic = os.getenv('DATA_TOPIC')
 client_id = os.getenv('CLIENT_ID')
 username = os.getenv('MQTT_USER')
 password = os.getenv('MQTT_PASS')
-reserTopic = os.getenv('RESET_TOPIC')
+resetTopic = os.getenv('RESET_TOPIC')
 configTopic = os.getenv('CONFIG_TOPIC')
 
 GPIO.setmode(GPIO.BOARD)
@@ -110,14 +110,14 @@ def getshift():
     
 
 
-def on_connect(client, userdata, flags, rc):  # The callback for when the client connects to the broker
-    # print("Connected with result code {0}".format(str(rc)))  # Print result of connection attempt
+def on_connect(client, userdata, flags, rc):  
+    global dataTopic,resetTopic,configTopic
     client.subscribe(dataTopic)  # Subscribe to the topic “digitest/test1”, receive any messages published on it
     client.subscribe(resetTopic)
     client.subscribe(configTopic)
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
-    global cnt1
+    global cnt1,resetTopic
     if msg.topic == resetTopic:
         print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
         restart()
