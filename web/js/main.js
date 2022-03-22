@@ -140,4 +140,7 @@ function set_metrics(s_cans, s_cases, damages, downtime, r_cans) {
     //downtime
     document.getElementById("downtime").innerHTML = downtime
 
+    //downtime
+    document.getElementById("r_cans").innerHTML = r_cans
+
 }

@@ -137,7 +137,7 @@ client.connect(os.getenv('MQTT_SERVER'))
 client.loop_start()  #Start loop
 
 
-def publish():
+def publish():``
     global client, cnt1, cnt2, cont2, downtime, damages
     msg = '{"clientID":"'+ str(client_id) +'","target":"'+ str(target) +'","cans":" ' + str(cnt2) + '","canspercase":"' + str(canspercase) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"'+str(tstamp) +'","damages":"'+str(damages)+'","downtime":"'+str(downtime)+'"}'
     topic = dataTopic
@@ -171,4 +171,4 @@ if os.getenv('COUNTER1_STATUS') == "ENABLED":
 if os.getenv('COUNTER2_STATUS') == "ENABLED":
     countcans2()
 
-eel.start('index.html', host='localhost', port=27011, size=(1280,960), position=(0,0), cmdline_args=['--incognito','--disable-infobars','--start-fullscreen'] )
+eel.start('index.html', host='localhost', port=27011, size=(1280,960), position=(0,0), cmdline_args=['--disable-infobars','--start-fullscreen'] )
