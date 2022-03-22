@@ -137,7 +137,7 @@ client.connect(os.getenv('MQTT_SERVER'))
 client.loop_start()  #Start loop
 
 
-def publish():``
+def publish():
     global client, cnt1, cnt2, cont2, downtime, damages
     msg = '{"clientID":"'+ str(client_id) +'","target":"'+ str(target) +'","cans":" ' + str(cnt2) + '","canspercase":"' + str(canspercase) + '","cases":"' + str(round(cnt2/canspercase,1)) + '","cspeed":"'+ str(cspeed * 60) +'","tstamp":"'+str(tstamp) +'","damages":"'+str(damages)+'","downtime":"'+str(downtime)+'"}'
     topic = dataTopic
