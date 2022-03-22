@@ -34,7 +34,7 @@ var myChart = new Chart(document.getElementById('mychart'), {
 //             "transparent"
 //         ]
 //     }]
-//     document.getElementById('efficiency').innerHTML = data + '%'
+//     document.getElementById('efficiency').textContent = data + '%'
 //     myChart.update(0);
 // }
 function addData(data) {
@@ -47,7 +47,7 @@ function addData(data) {
         dataset.data[1] = alt;
         dataset.backgroundColor[0] = colo
     });
-    document.getElementById('efficiency').innerHTML = data + '%'
+    document.getElementById('efficiency').textContent = data + '%'
     myChart.update(0);
 }
 
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function updatetarget() {
     const tgt = document.getElementById('ftarget').value
-    document.getElementById('rangee').innerHTML = tgt
+    document.getElementById('rangee').textContent = tgt
 }
 
 $('#submit').click(function() {
@@ -108,11 +108,11 @@ eel.expose(set_jsconfigs);
 
 function set_jsconfigs(client_id, team, canspercase, target, shift) {
     // client title
-    document.getElementById('client_id').innerHTML = client_id.replace(/^\D+/g, '');
+    document.getElementById('client_id').textContent = client_id.replace(/^\D+/g, '');
     //team
-    document.getElementById("team").innerHTML = team
+    document.getElementById("team").textContent = team
         //shift
-    document.getElementById("shift").innerHTML = shift
+    document.getElementById("shift").textContent = shift
 
 }
 
@@ -129,18 +129,18 @@ eel.expose(set_metrics);
 function set_metrics(s_cans, s_cases, damages, downtime, r_cans) {
 
     //seamed cans
-    document.getElementById("s_cans").innerHTML = s_cans
+    document.getElementById("s_cans").textContent = s_cans
 
     //seamed cases 
-    document.getElementById("s_cases").innerHTML = s_cases
+    document.getElementById("s_cases").textContent = s_cases
 
     //damaged cans
-    document.getElementById("damages").innerHTML = damages
+    document.getElementById("damages").textContent = damages
 
     //downtime
-    document.getElementById("downtime").innerHTML = downtime
+    document.getElementById("downtime").textContent = downtime
 
     //downtime
-    document.getElementById("r_cans").innerHTML = r_cans
+    document.getElementById("r_cans").textContent = r_cans
 
 }
