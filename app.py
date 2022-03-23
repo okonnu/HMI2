@@ -118,6 +118,7 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
     global cnt1,resetTopic
+    print("Message received-> " + msg.topic + " " + str(msg.payload))
     if msg.topic == resetTopic:
         print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
         restart()
