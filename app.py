@@ -111,8 +111,8 @@ def getshift():
 
 
 def on_connect(client, userdata, flags, rc):  
-    global dataTopic,resetTopic,configTopic
-    client.subscribe(dataTopic)  # Subscribe to the topic “digitest/test1”, receive any messages published on it
+    global resetTopic,configTopic
+    print(configTopic)
     client.subscribe(resetTopic)
     client.subscribe(configTopic)
 
