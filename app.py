@@ -144,7 +144,7 @@ def publish():
     result = client.publish(topic, msg)
     status = result[0] 
     if status != 0:
-        print("publish() returned error code:" + str(status))
+        print("publish() returned error code:" + str(result))
         
     
 def sendcans():

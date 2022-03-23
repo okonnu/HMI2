@@ -112,7 +112,7 @@ function set_jsconfigs(client_id, team, canspercase, target, shift) {
     //team
     document.getElementById("team").textContent = team
         //shift
-    document.getElementById("shift").textContent = shift
+        // document.getElementById("shift").textContent = shift
 
 }
 
