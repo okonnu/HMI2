@@ -124,8 +124,7 @@ def on_message(client, userdata, msg):  # The callback for when a PUBLISH messag
     if msg.topic == configTopic:
         print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
         data = json.loads(msg.payload)
-        cnt1 = data[canspercase]
-        print(cnt1)
+        print(data)
 
 client = mqtt.Client(os.getenv('CLIENT_ID'))  # Create instance of client with client ID “digi_mqtt_test”
 client.on_connect = on_connect  # Define callback function for successful connection
