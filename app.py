@@ -117,7 +117,7 @@ def on_connect(client, userdata, flags, rc):
     client.subscribe(configTopic)
 
 def on_message(client, userdata, msg):  # The callback for when a PUBLISH message is received from the server.
-    global cnt1,resetTopic
+    global cnt1,resetTopic,canspercase,team
     if msg.topic == resetTopic:
         print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
         restart()
@@ -125,6 +125,8 @@ def on_message(client, userdata, msg):  # The callback for when a PUBLISH messag
         print("Message received-> " + msg.topic + " " + str(msg.payload))  # Print a received msg
         data = json.loads(msg.payload)
         cnt1 = data["receivedcans"]
+        team = data["team"]
+        canspercase = data["canspercase"]
         print(cnt1)
 
 client = mqtt.Client(os.getenv('CLIENT_ID'))  # Create instance of client with client ID “digi_mqtt_test”
@@ -144,8 +146,8 @@ def publish():
     topic = dataTopic
     result = client.publish(topic, msg)
     status = result[0] 
-    if status != 0:
-        print("publish() returned error code:" + str(result))
+    # if status != 0:
+        # print("publish() returned error code:" + str(result))
         
     
 def sendcans():
