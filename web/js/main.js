@@ -110,9 +110,9 @@ function set_jsconfigs(client_id, team, canspercase, target, shift) {
     // client title
     document.getElementById('client_id').textContent = client_id.replace(/^\D+/g, '');
     //team
-    document.getElementById("team").textContent = team
-        //shift
-        // document.getElementById("shift").textContent = shift
+    // document.getElementById("team").textContent = team
+    //shift
+    document.getElementById("shift").textContent = shift
 
 }
 
