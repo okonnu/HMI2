@@ -126,7 +126,6 @@ def on_message(client, userdata, msg):  # The callback for when a PUBLISH messag
         data = json.loads(msg.payload)
         cnt1 = int(data["receivedcans"])
         team = data["team"]
-        canspercase = data["canspercase"]
         print(cnt1)
 
 client = mqtt.Client(os.getenv('CLIENT_ID'))  # Create instance of client with client ID “digi_mqtt_test”
