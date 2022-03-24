@@ -79,7 +79,7 @@ def countcans1():
     threading.Timer(sleep_time, countcans1).start()
     if GPIO.input(counter1) == 1 and previous1 == False:
         cnt1 = cnt1 + 1
-        print("counter1 : " + str(cnt1))
+        # print("counter1 : " + str(cnt1))
         previous1 = True
     elif GPIO.input(counter1) == 0 and previous1 == True:
         previous1 = False
@@ -91,7 +91,7 @@ def countcans2():
     delay = delay + sleep_time
     if GPIO.input(counter2) == 1 and previous2 == False:
         cnt2 = cnt2 + 1
-        print("counter2 : " + str(cnt2))
+        # print("counter2 : " + str(cnt2))
         downtime = downtime + delay
         delay = 0
         previous2 = True
