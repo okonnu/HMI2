@@ -98,6 +98,7 @@ def countcans2():
     elif GPIO.input(counter2) == 0 and previous2 == True:
         previous2 = False
         # set values to js  
+    damages = cnt1-cnt2
     eel.set_metrics(cnt2, round(cnt2/canspercase,1), damages, round(downtime/60, 2), cnt1)
     
 def getshift():
